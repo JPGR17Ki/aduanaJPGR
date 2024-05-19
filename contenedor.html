@@ -42,25 +42,16 @@
         const app = initializeApp(firebaseConfig);
         const conexion = getFirestore(app);
 
-        //Agregar
-        const Gcontenedor = document.getElementById("ing-contenedor");
-
-        Gcontenedor.addEventListener("submit", async (e) => {
+        //Agrega
+        const aduana = document.getElementById("ing-contenedor");
+        aduana.addEventListener("submit",async(e)=>{
             e.preventDefault();
-            
-            try {
-                await addDoc(collection(conexion, "contenedores"), {
-                    codigo: Gcontenedor.codigo.value
-                });
-                
-                // Resetear el formulario después de un envío exitoso
-                Gcontenedor.reset();
-                alert("¡Datos enviados exitosamente!");
-            } catch (error) {
-                console.error("Error al agregar el documento: ", error);
-                alert("¡Error al enviar los datos!");
-            }
+            await addDoc(collection(conexion,"pacientes"),{
+                codigo: aduana.codigo.value
+            });
+            aduana.reset();
         });
+
       </script>
 </body>
 </html>
