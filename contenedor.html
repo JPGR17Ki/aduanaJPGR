@@ -49,7 +49,7 @@
             e.preventDefault();
             
             try {
-                await addDoc(collection(db, "contenedores"), {
+                await addDoc(collection(conexion, "contenedores"), {
                     codigo: Gcontenedor.codigo.value
                 });
                 
