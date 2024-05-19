@@ -64,7 +64,7 @@
         // Mostrar pacientes en la tabla
         const tablaContenedores = document.getElementById("tabla-contenedores");
         onSnapshot(collection(conexion, "contenedores"), (snapshot) => {
-            tablaPacientes.innerHTML = "";
+            tablaContenedores.innerHTML = "";
             snapshot.forEach((doc) => {
                 const contenedor = doc.data();
                 tablaPacientes.innerHTML += `
