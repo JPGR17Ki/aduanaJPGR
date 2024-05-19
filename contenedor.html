@@ -42,10 +42,25 @@
         const app = initializeApp(firebaseConfig);
         const conexion = getFirestore(app);
 
+        //Restriccion de codigo 
+            async function verificarCodigoExistente(codigo) {
+                const c = query(collection(conexion, "contenedores"), where("codigo", "==", codigo));
+                const querySnapshot = await getDocs(c);
+                return !querySnapshot.empty;
+            }
+
         //Agrega
         const aduana = document.getElementById("ing-contenedor");
         aduana.addEventListener("submit",async(e)=>{
             e.preventDefault();
+            const codigo = aduana.codigo.value;
+        
+            // Verificar si el código ya existe
+            const codigoExistente = await verificarCodigoExistente(codigo);
+            if (codigoExistente) {
+                alert("El código ya existe. Por favor, ingrese un código único.");
+                return;
+            }
             await addDoc(collection(conexion,"contenedores"),{
                 codigo: aduana.codigo.value
             });
