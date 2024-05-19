@@ -20,7 +20,19 @@
         </div>
         <button type="submit" class="btn btn-success" id="btn-submit">Agregar contenedor</button>
     </form>
-
+    <div class="container">
+        <center><h2>Lista de Contenedores</h2></center>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-contenedores">
+                <!-- Los datos de los pacientes se insertarán aquí -->
+            </tbody>
+        </table>
+    </div>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -48,6 +60,20 @@
                 const querySnapshot = await getDocs(c);
                 return !querySnapshot.empty;
             }
+
+        // Mostrar pacientes en la tabla
+        const tablaContenedores = document.getElementById("tabla-contenedores");
+        onSnapshot(collection(conexion, "contenedores"), (snapshot) => {
+            tablaPacientes.innerHTML = "";
+            snapshot.forEach((doc) => {
+                const contenedor = doc.data();
+                tablaPacientes.innerHTML += `
+                    <tr>
+                        <td>${contenedor.codigo}</td>
+                    </tr>
+                `;
+            });
+        });
 
         //Agrega
         const aduana = document.getElementById("ing-contenedor");
