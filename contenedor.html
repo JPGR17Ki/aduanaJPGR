@@ -15,7 +15,7 @@
         <div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Email address</label>
-                <input type="text" class="form-control" id="codigo" placeholder="#001">
+                <input type="text" class="form-control" id="codigo" placeholder="#001" required>
             </div>
         </div>
         <button type="submit" class="btn btn-success" id="btn-submit">Agregar contenedor</button>
@@ -46,7 +46,7 @@
         const aduana = document.getElementById("ing-contenedor");
         aduana.addEventListener("submit",async(e)=>{
             e.preventDefault();
-            await addDoc(collection(conexion,"pacientes"),{
+            await addDoc(collection(conexion,"contenedores"),{
                 codigo: aduana.codigo.value
             });
             aduana.reset();
