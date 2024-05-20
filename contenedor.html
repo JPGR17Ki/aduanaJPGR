@@ -12,16 +12,48 @@
         <h1>CRUD de Contenedores</h1>
         <form id="ing-contenedor">
             <div class="form-group">
-                <label for="codigo">Código</label>
+                <label for="codigo">Código: </label>
                 <input type="text" class="form-control" id="codigo" placeholder="#001" required>
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" class="form-control" id="marca" placeholder="Ingrese la marca del contenedor" required>
+            </div>
+            <div class="form-group">
+                <label for="respondable">Aduanero respondable:</label>
+                <input type="text" class="form-control" id="respondable" placeholder="Nombres del digitador" required>
+            </div>
+            <div class="form-group">
+                <label for="cedula">Cedula del Responsable</label>
+                <input type="text" class="form-control" id="cedula" placeholder="Ingrese su codigo de identificacion" required>
+            </div>
+            <div class="form-group">
+                <label for="emitente">Compania emitente de carga:</label>
+                <input type="text" class="form-control" id="emitente" placeholder="De: Compania Ltda. ****" required>
+            </div>
+            <div class="form-group">
+                <label for="recep">Compania de destino:</label>
+                <input type="text" class="form-control" id="recep" placeholder="Para: Compania Ltda. ****" required>
+            </div>
+            <div class="form-group">
+                <label for="contenido">Contenido de carga:</label>
+                <input type="text" class="form-control" id="contenido" placeholder="AUTOS/REPUESTOS/TELEVISIONES/MIXTO/ETC." required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Detalles de carga:</label>
+                <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso de la carga:</label>
+                <input type="number" class="form-control" id="peso" placeholder="Peso en toneladas" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado del contenedor:</label>
+                <input type="text" class="form-control" id="estado" placeholder="EN PROCESO/ENTEGADO/DENEGADO" required>
             </div>
             <button type="submit" class="btn btn-success mt-3">Agregar contenedor</button>
         </form>
 
-        <div class="mt-5">
-            <h2>Lista de Contenedores</h2>
-            <ul id="contenedor-list" class="list-group"></ul>
-        </div>
     </div>
     
     <script type="module">
@@ -65,51 +97,18 @@
                 return;
             }
             await addDoc(collection(conexion,"contenedores"),{
-                codigo: aduana.codigo.value
-                
+                codigo: aduana.codigo.value,
+                marca: aduana.marca.value,
+                responsable: aduana.respondable.value,
+                ciRespon: aduana.cedula.value,
+                cmpEmitente: aduana.emitente.value,
+                cmpRecep: aduana.recep.value,
+                contenido: aduana.contenido.value,
+                descripcion: aduana.descripcion.value,
+                peso: aduana.peso.value,
+                estado: aduana.estado.value
             });
             aduana.reset();
-        });
-
-        //lista base de datos
-        function renderContenedor(doc) {
-            const li = document.createElement("li");
-            li.classList.add("list-group-item");
-            li.setAttribute("data-id", doc.id);
-
-            const codigo = document.createElement("span");
-            codigo.textContent = doc.data().codigo;
-
-            const editButton = document.createElement("button");
-            editButton.textContent = "Editar";
-            editButton.classList.add("btn", "btn-warning", "btn-sm", "ms-3");
-            editButton.addEventListener("click", () => editContenedor(doc));
-
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Eliminar";
-            deleteButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
-            deleteButton.addEventListener("click", () => deleteContenedor(doc.id));
-
-            li.appendChild(codigo);
-            li.appendChild(editButton);
-            li.appendChild(deleteButton);
-
-            contenedorList.appendChild(li);
-        }
-
-        //eliminar 
-        function deleteContenedor(id) {
-            const contenedorRef = doc(conexion, "contenedores", id);
-            deleteDoc(contenedorRef)
-                .then(() => console.log("Documento eliminado"))
-                .catch(error => console.error("Error deleting document: ", error));
-        }
-
-
-        //ver lista
-        onSnapshot(collection(conexion, "contenedores"), (snapshot) => {
-            contenedorList.innerHTML = "";
-            snapshot.forEach(doc => renderContenedor(doc));
         });
       </script>
 </body>
