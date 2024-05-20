@@ -118,7 +118,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import {getFirestore,collection,addDoc,onSnapshot,updateDoc,deleteDoc,doc,query, where,getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, updateDoc, deleteDoc, doc, query, where, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -189,6 +189,7 @@
                     <td>${contenedor.estado}</td>
                     <td>
                         <button class="btn btn-primary btn-sm editar" data-id="${doc.id}">Editar</button>
+                        <button class="btn btn-danger btn-sm eliminar" data-id="${doc.id}">Eliminar</button>
                     </td>
                 `;
                 tablaContenedores.appendChild(fila);
@@ -220,6 +221,17 @@
                         }
                     } else {
                         alert("Documento no encontrado.");
+                    }
+                });
+            });
+
+            // Agregar eventos de eliminación a los botones
+            document.querySelectorAll(".eliminar").forEach(boton => {
+                boton.addEventListener("click", async (e) => {
+                    const id = e.target.getAttribute("data-id");
+                    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este contenedor?");
+                    if (confirmacion) {
+                        await deleteDoc(doc(conexion, "contenedores", id));
                     }
                 });
             });
