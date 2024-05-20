@@ -41,13 +41,39 @@
         <div class="card">
             <div class="card-body">
                 <form id="ing-contenedor">
-                    <div class="mb-3 form-group">
-                        <label for="codigo">Código: </label>
-                        <input type="text" class="form-control" id="codigo" placeholder="#001" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="codigo">Código: </label>
+                            <input type="text" class="form-control" id="codigo" placeholder="#001" required>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="marca">Marca</label>
+                            <input type="text" class="form-control" id="marca" placeholder="Ingrese la marca del contenedor" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="emitente">Compañía Emitente de Carga:</label>
+                            <input type="text" class="form-control" id="emitente" placeholder="De: Compañía Ltda. ****" required>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="recep">Compañía de Destino:</label>
+                            <input type="text" class="form-control" id="recep" placeholder="Para: Compañía Ltda. ****" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="contenido">Contenido de Carga:</label>
+                            <input type="text" class="form-control" id="contenido" placeholder="AUTOS/REPUESTOS/TELEVISIONES/MIXTO/ETC." required>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="peso">Peso de la Carga:</label>
+                            <input type="number" class="form-control" id="peso" placeholder="Peso en toneladas" required>
+                        </div>
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="marca">Marca</label>
-                        <input type="text" class="form-control" id="marca" placeholder="Ingrese la marca del contenedor" required>
+                        <label for="descripcion">Detalles de Carga:</label>
+                        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
                     </div>
                     <div class="mb-3 form-group">
                         <label for="respondable">Aduanero Responsable:</label>
@@ -56,26 +82,6 @@
                     <div class="mb-3 form-group">
                         <label for="cedula">Cédula del Responsable</label>
                         <input type="text" class="form-control" id="cedula" placeholder="Ingrese su código de identificación" required>
-                    </div>
-                    <div class="mb-3 form-group">
-                        <label for="emitente">Compañía Emitente de Carga:</label>
-                        <input type="text" class="form-control" id="emitente" placeholder="De: Compañía Ltda. ****" required>
-                    </div>
-                    <div class="mb-3 form-group">
-                        <label for="recep">Compañía de Destino:</label>
-                        <input type="text" class="form-control" id="recep" placeholder="Para: Compañía Ltda. ****" required>
-                    </div>
-                    <div class="mb-3 form-group">
-                        <label for="contenido">Contenido de Carga:</label>
-                        <input type="text" class="form-control" id="contenido" placeholder="AUTOS/REPUESTOS/TELEVISIONES/MIXTO/ETC." required>
-                    </div>
-                    <div class="mb-3 form-group">
-                        <label for="descripcion">Detalles de Carga:</label>
-                        <textarea class="form-control" id="descripcion" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3 form-group">
-                        <label for="peso">Peso de la Carga:</label>
-                        <input type="number" class="form-control" id="peso" placeholder="Peso en toneladas" required>
                     </div>
                     <div class="mb-3 form-group">
                         <label for="estado">Estado del Contenedor:</label>
