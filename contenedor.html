@@ -33,6 +33,36 @@
         .card-body {
             padding: 2rem;
         }
+        .table-responsive {
+            margin-top: 30px;
+        }
+        .table {
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .table th, .table td {
+            border-top: none;
+        }
+        .table th {
+            background-color: #28a745;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 0;
+            vertical-align: middle;
+        }
+        .table td {
+            vertical-align: middle;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .table-striped tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+        .editar, .eliminar {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -109,7 +139,7 @@
                     </tr>
                 </thead>
                 <tbody id="contenedor-tabla">
-                    <!-- Datos de contenedores serán insertados aquí -->
+                    
                 </tbody>
             </table>
         </div>
