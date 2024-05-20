@@ -204,10 +204,14 @@
 
                     if (docSnap.exists()) {
                         const contenedor = docSnap.data();
-                        const nuevoPeso = prompt("Nuevo Peso:", contenedor.peso);
                         const nuevaMarca = prompt("Nueva Marca:", contenedor.marca);
                         const nuevaDescripcion = prompt("Nueva Descripción:", contenedor.descripcion);
                         const nuevoEstado = prompt("Nuevo Estado:", contenedor.estado);
+
+                        let nuevoPeso;
+                        do {
+                            nuevoPeso = prompt("Nuevo Peso:", contenedor.peso);
+                        } while (isNaN(parseFloat(nuevoPeso)));
 
                         if (nuevoPeso && nuevaMarca && nuevaDescripcion && nuevoEstado) {
                             await updateDoc(docRef, {
