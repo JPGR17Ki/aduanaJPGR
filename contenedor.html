@@ -169,30 +169,6 @@
             });
             aduana.reset();
         });
-
-        // Mostrar datos en la tabla en tiempo real
-        const tablaContenedores = document.getElementById("contenedor-tabla");
-        onSnapshot(collection(conexion, "contenedores"), (snapshot) => {
-            tablaContenedores.innerHTML = "";
-            snapshot.forEach((doc) => {
-                const contenedor = doc.data();
-                const fila = document.createElement("tr");
-                fila.innerHTML = `
-                    <td>${contenedor.codigo}</td>
-                    <td>${contenedor.marca}</td>
-                    <td>${contenedor.responsable}</td>
-                    <td>${contenedor.ciRespon}</td>
-                    <td>${contenedor.cmpEmitente}</td>
-                    <td>${contenedor.cmpRecep}</td>
-                    <td>${contenedor.contenido}</td>
-                    <td>${contenedor.descripcion}</td>
-                    <td>${contenedor.peso}</td>
-                    <td>${contenedor.estado}</td>
-                `;
-                tablaContenedores.appendChild(fila);
-            });
-        });
-
         // Mostrar datos en la tabla en tiempo real
         const tablaContenedores = document.getElementById("contenedor-tabla");
         onSnapshot(collection(conexion, "contenedores"), (snapshot) => {
