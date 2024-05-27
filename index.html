@@ -31,17 +31,17 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="authForm">
+                                <form id="aduana_formulario">
                                     <div class="mb-3">
-                                        <input type="email" id="email" class="form-control" placeholder="Correo electronico" required>
+                                        <input type="email" id="correo" class="form-control" placeholder="Ingrese un correo electronico" required>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+                                        <input type="password" id="contrasena" class="form-control" placeholder="Ingrese su contraseña" required>
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <button type="button" class="btn btn-outline-info" id="btn-login">Iniciar sesión</button>
-                                        <button type="button" class="btn btn-outline-dark" id="btn-register">Registrarse</button>
-                                        <button type="button" class="btn btn-outline-primary" id="btn-google"><img src="imagenes/google.png" alt="">&nbsp; &nbsp; Iniciar sesión con Google</button>
+                                        <button type="button" class="btn btn-outline-info" id="login_aduana">Iniciar sesión</button>
+                                        <button type="button" class="btn btn-outline-dark" id="registro_aduana">Registrarse</button>
+                                        <button type="button" class="btn btn-outline-primary" id="login_google"><img src="imagenes/google.png" alt="">&nbsp; &nbsp; Iniciar sesión con Google</button>
                                     </div>
                                 </form>
                             </div>
@@ -131,5 +131,94 @@
         </table>
     </div>
     <br>
+    // configuraciones de firebase
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAlGXLODUC8pqbAQqqY_bK9epMkRR_CLY0",
+            authDomain: "aduana-b9139.firebaseapp.com",
+            projectId: "aduana-b9139",
+            storageBucket: "aduana-b9139.appspot.com",
+            messagingSenderId: "819068339914",
+            appId: "1:819068339914:web:240ca64cec169dea26d633"
+        };
+
+        // Coneccion con Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Coneccion con Google
+        const provider = new GoogleAuthProvider();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const aduana_formulario = document.getElementById('aduana_formulario');
+            const correo = document.getElementById('correo');
+            const contrasena = document.getElementById('contrasena');
+            const login_aduana = document.getElementById('login_aduana');
+            const registro_aduana = document.getElementById('registro_aduana');
+            const login_google = document.getElementById('login_google');
+
+            
+
+            // Iniciar sesion con email
+            login_aduana.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = correo.value;
+                const password = contrasena.value;
+
+                signInWithEmailAndPassword(auth, email , password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log('Usuario ingresado:', user);
+                        window.location.href = 'contenedor.html';
+                    })
+                    .catch((error) => {
+                        console.error('Error durante la autenticación:', error);
+                        alert(`Error: ${error.message}`);
+                    });
+            });
+
+            // Registrar sesion email
+            registro_aduana.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = correo.value;
+                const password = contrasena.value;
+
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log('Usuario registrado:', user);
+                        
+                    })
+                    .catch((error) => {
+                        console.error('Error durante el registro:', error);
+                        alert(`Error: ${error.message}`);
+                    });
+            });
+
+            // Google login functionality
+            login_google.addEventListener('click', (e) => {
+                e.preventDefault();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        const user = result.user;
+                        console.log('Usuario ingresado con Google:', user);
+                        window.location.href = 'contenedor.html';
+                    })
+                    .catch((error) => {
+                        console.error('Error durante la autenticación con Google:', error);
+                        alert(`Error: ${error.message}`);
+                    });
+            });
+        });
+    </script>
+
+
+
+
 </body>
 </html>
