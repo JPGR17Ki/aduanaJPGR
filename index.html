@@ -17,7 +17,35 @@
                 <h1 style="color: white;">
                     ADUANA / EVALUACION N°1<br> COMPUTACION EN LA NUBE <br> JEAN PIERE GARNICA 
                 </h1>
-                <a href="contenedor.html"><button class="btnop" style="width:500px; height: 70px;"> <h3>REGISTRAR CONTENEDORES</h1></button></a>
+                <button class="btnop" style="width:500px; height: 70px;" type="button" data-bs-toggle="modal" data-bs-target="#authModal"> <h3>REGISTRAR CONTENEDORES</h1></button>
+                <!-- Modal -->
+                    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="authModalLabel">Autenticación</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="authForm">
+                                        <div class="mb-3">
+                                            <input type="email" id="email" class="form-control" placeholder="Correo electronico" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" class="btn btn-primary" id="btn-login">Iniciar sesión</button>
+                                            <button type="button" class="btn btn-secondary" id="btn-register">Registrarse</button>
+                                            <button type="button" class="btn btn-danger" id="btn-google"><img src="imagenes/google.png" alt="">&nbsp; &nbsp; Iniciar sesión con Google</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
                 <h4><a href="#" style="color: white;">VER MAS</a></h4>
 
             </div>
